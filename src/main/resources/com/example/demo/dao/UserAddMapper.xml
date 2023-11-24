@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserAddMapper">
+
+    <!-- 新規登録 -->
+    <insert id="save">
+        INSERT INTO user_tbl
+            (sya_id, name, address, phone, mail, password)
+        VALUES
+            (#{syaId}, #{name}, #{address}, #{phone}, #{mail}, #{password})
+    </insert>
+</mapper>

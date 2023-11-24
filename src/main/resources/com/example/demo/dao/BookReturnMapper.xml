@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BookReturnMapper">
+
+
+    <!-- 更新 -->
+    <update id="renthisupdate">
+		UPDATE rent_his_tbl 
+		SET return_date = CURRENT_DATE 
+		WHERE book_id = #{bookId} AND sya_id = #{syaId} AND return_date IS NULL
+    </update>
+    	
+	<update id="libupdate">
+		UPDATE lib_tbl SET rent_status = '貸出可'
+		WHERE book_id = #{bookId} AND rent_status = '貸出不可'
+
+    </update>
+</mapper>

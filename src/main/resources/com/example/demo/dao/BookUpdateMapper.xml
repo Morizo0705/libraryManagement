@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BookUpdateMapper">
+
+
+    <!-- 更新 -->
+    <update id="update">
+    	UPDATE lib_tbl SET rent_status = "貸出不可" WHERE book_id = #{bookId}
+    </update>
+    	
+	<insert id="insert">
+    	INSERT INTO rent_his_tbl
+    		(sya_id, book_id, start_date, end_date)
+    	VALUES
+    		(#{syaId}, #{bookId}, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 1 MONTH))
+    </insert>
+</mapper>

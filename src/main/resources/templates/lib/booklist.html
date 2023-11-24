@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本一覧</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 40px;
+}
+
+.container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f9fa;
+}
+
+label, input {
+	width: 100%;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+	<div th:if="${booklist}" class="container mt-5">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>本のID</th>
+					<th>タイトル</th>
+					<th>ふりがな</th>
+					<th>貸出可否</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${booklist}">
+					<td th:text="${book.bookId}"></td>
+					<td th:text="${book.bookTitle}"></td>
+					<td th:text="${book.hurigana}"></td>
+					<td th:text="${book.rentStatus}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	    <div class="container">
+        <div class="content">
+            <div class="button-container">
+                <a th:href="@{/lending/lend}"><button class="button">貸出</button></a>
+                <a th:href="@{/home/index}"><button class="button">戻る</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

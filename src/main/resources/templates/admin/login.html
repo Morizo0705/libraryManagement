@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者ログイン</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            margin-top: 10%;
+        }
+        .login-card {
+            background: #fff;
+            border: 1px solid #d2d2d2;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .login-card-body {
+            padding: 20px;
+        }
+        .login-logo {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+        }
+        .login-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            height: 45px;
+            font-size: 16px;
+        }
+        .login-button {
+            background: #007BFF;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container login-container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 login-card">
+                <div class="login-card-body">
+                    <h2 class="login-logo">♪ログイン♪</h2>
+                    <form class="login-form" th:action="@{/admin/login}" th:method="post" th:object="${loginForm}">
+                        <div class="form-group">
+                            <label for="loginId">ログインID</label>
+                            <input type="text" id="loginId" th:field="*{loginId}" class="form-control" placeholder="ユーザー名" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">パスワード</label>
+                            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="パスワード" required="required">
+                        </div>
+                        <button type="submit" class="btn btn-primary login-button">ログイン</button>
+                    </form>
+                    <div>
+                        <span th:text="${errorMsg}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

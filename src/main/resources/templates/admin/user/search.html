@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <title>ユーザー情報一覧</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+<body>
+    <div class="container">
+        <h1 class="mt-5">ユーザー情報一覧</h1>
+        <div class="float-end mb-3">
+            <a th:href="@{/user/add}" class="btn btn-primary">新規登録はこちら</a>
+        </div>
+        <form class="mb-4" th:action="@{/user/search}" th:object="${userSearchRequest}" th:method="post">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" th:field="*{syaId}">
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="form-group">
+                        <label for="name">名前</label>
+                        <input type="text" class="form-control" th:field="*{name}">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">検索</button>
+        </form>
+        <div th:if="${userlist}">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>社員番号</th>
+                        <th>名前</th>
+                        <th>住所</th>
+                        <th>電話番号</th>
+                        <th>会社のメールアドレス</th>
+                        <th>パスワード</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
+                        <td th:text="*{syaId}"></td>
+                        <td th:text="*{name}"></td>
+                        <td th:text="*{address}"></td>
+                        <td th:text="*{phone}"></td>
+                        <td th:text="*{mail}"></td>
+                        <td th:text="*{password}"></td>
+                        <td>
+                            <a th:href="@{/user/{syaId}/edit(syaId=*{syaId})}" class="btn btn-primary btn-sm">編集</a>
+                            <a th:href="@{/user/{syaId}/delete(syaId=*{syaId})}" class="btn btn-secondary btn-sm">削除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
